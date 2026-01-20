@@ -1,0 +1,327 @@
+
+---
+
+## 📄 **2. search.html (Complete)**
+
+**File: `search.html`**
+```html
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Apps - OP ASHISH YT</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+    
+    <style>
+        .search-container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+        
+        .search-box {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .search-form {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .search-form input {
+            flex: 1;
+            padding: 12px 20px;
+            border: 2px solid #2563eb;
+            border-radius: 25px;
+            font-size: 1rem;
+            outline: none;
+        }
+        
+        .search-form button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .search-results {
+            margin-top: 30px;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 50px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        .popular-searches {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 10px;
+        }
+        
+        .popular-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .tag {
+            background: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            text-decoration: none;
+            color: #2563eb;
+            border: 1px solid #2563eb;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .tag:hover {
+            background: #2563eb;
+            color: white;
+        }
+        
+        .search-loading {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+        }
+        
+        .search-loading i {
+            font-size: 2rem;
+            color: #2563eb;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="assets/img/logo.png" alt="OP ASHISH YT Logo" onerror="this.src='assets/img/default-logo.png'">
+                <span>OP ASHISH YT</span>
+            </div>
+            
+            <div class="nav-links">
+                <a href="index.html"><i class="fas fa-home"></i> होम</a>
+                <a href="index.html#featured"><i class="fas fa-star"></i> फीचर्ड</a>
+                <a href="index.html#apps"><i class="fas fa-th-list"></i> सभी ऐप्स</a>
+                <a href="search.html" style="color:#2563eb;"><i class="fas fa-search"></i> सर्च</a>
+                <a href="admin/login.html"><i class="fas fa-user-lock"></i> एडमिन</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="search-container">
+        <div class="search-box">
+            <h1><i class="fas fa-search"></i> ऐप्स सर्च करें</h1>
+            <p>अपने पसंदीदा MOD APK ऐप्स और गेम्स ढूंढें</p>
+            
+            <form class="search-form" id="searchForm">
+                <input type="text" 
+                       placeholder="ऐप्स या गेम्स सर्च करें (कम से कम 2 अक्षर)..." 
+                       id="searchInput"
+                       required
+                       autofocus>
+                <button type="submit">
+                    <i class="fas fa-search"></i> सर्च
+                </button>
+            </form>
+        </div>
+
+        <div id="searchResults">
+            <div class="popular-searches">
+                <h3><i class="fas fa-fire"></i> पॉपुलर सर्चेज:</h3>
+                <div class="popular-tags" id="popularTags">
+                    <!-- Tags will be loaded by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/firebase-config.js"></script>
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/apps-data.js"></script>
+    
+    <script>
+        const popularTags = [
+            "WhatsApp", "YouTube", "Instagram", "Spotify", "TikTok",
+            "Games", "Video", "Music", "Photo", "Social", "Premium"
+        ];
+        
+        document.addEventListener('DOMContentLoaded', async function() {
+            // Load popular tags
+            const tagsContainer = document.getElementById('popularTags');
+            popularTags.forEach(tag => {
+                tagsContainer.innerHTML += `
+                    <div class="tag" onclick="searchTag('${tag}')">${tag}</div>
+                `;
+            });
+            
+            // Handle form submission
+            document.getElementById('searchForm').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                const query = document.getElementById('searchInput').value.trim();
+                
+                if(query.length < 2) {
+                    alert('कृपया सर्च करने के लिए कम से कम 2 अक्षर दर्ज करें।');
+                    return;
+                }
+                
+                await performSearch(query);
+            });
+            
+            // Check for URL search parameter
+            const params = getUrlParams();
+            if(params.q) {
+                document.getElementById('searchInput').value = params.q;
+                await performSearch(params.q);
+            }
+        });
+        
+        function searchTag(tag) {
+            document.getElementById('searchInput').value = tag;
+            performSearch(tag);
+        }
+        
+        async function performSearch(query) {
+            const resultsContainer = document.getElementById('searchResults');
+            
+            // Show loading
+            resultsContainer.innerHTML = `
+                <div class="search-loading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>सर्च रिजल्ट्स लोड हो रहे हैं...</p>
+                </div>
+            `;
+            
+            let results = [];
+            
+            try {
+                // Try Firebase search first
+                if (typeof FirebaseApp !== 'undefined') {
+                    const firebaseResults = await FirebaseApp.searchApps(query);
+                    if (firebaseResults.length > 0) {
+                        results = firebaseResults;
+                    }
+                }
+                
+                if (results.length === 0) {
+                    // Try local search
+                    const allApps = await loadAppsData();
+                    const searchLower = query.toLowerCase();
+                    
+                    results = allApps.filter(app => {
+                        return app.name.toLowerCase().includes(searchLower) ||
+                               (app.description && app.description.toLowerCase().includes(searchLower)) ||
+                               (app.features && app.features.some(f => f.toLowerCase().includes(searchLower)));
+                    });
+                }
+                
+                displaySearchResults(results, query);
+                
+            } catch (error) {
+                console.error('Search error:', error);
+                resultsContainer.innerHTML = `
+                    <div class="no-results">
+                        <i class="fas fa-exclamation-triangle" style="font-size: 3rem; color: #dc2626;"></i>
+                        <h3>सर्च में त्रुटि हुई</h3>
+                        <p>कृपया बाद में पुनः प्रयास करें</p>
+                        <a href="index.html#apps" class="btn-download" style="margin-top: 15px; display: inline-block; width: auto;">
+                            <i class="fas fa-th-list"></i> सभी ऐप्स देखें
+                        </a>
+                    </div>
+                `;
+            }
+        }
+        
+        function displaySearchResults(results, query) {
+            const resultsContainer = document.getElementById('searchResults');
+            
+            if(results.length === 0) {
+                resultsContainer.innerHTML = `
+                    <div class="no-results">
+                        <i class="fas fa-search" style="font-size: 3rem; color: #6b7280;"></i>
+                        <h3>"${query}" के लिए कोई रिजल्ट नहीं मिला</h3>
+                        <p>अलग कीवर्ड्स के साथ ट्राई करें या सभी ऐप्स ब्राउज़ करें</p>
+                        <a href="index.html#apps" class="btn-download" style="margin-top: 15px; display: inline-block; width: auto;">
+                            <i class="fas fa-th-list"></i> सभी ऐप्स देखें
+                        </a>
+                    </div>
+                `;
+                return;
+            }
+            
+            let html = `
+                <h2 style="margin: 20px 0;">"${query}" के लिए ${results.length} रिजल्ट्स मिले:</h2>
+                <div class="search-results">
+            `;
+            
+            results.forEach(app => {
+                html += `
+                    <div class="app-item">
+                        <img src="${app.logo}" alt="${app.name}" onerror="this.src='assets/img/default-logo.png'">
+                        <div class="app-details">
+                            <h3>${app.name}</h3>
+                            <p>${app.description ? app.description.substring(0, 150) + '...' : ''}</p>
+                            <div class="meta">
+                                <span><i class="fas fa-code-branch"></i> ${app.version || '1.0'}</span>
+                                <span><i class="fas fa-hdd"></i> ${app.size || 'N/A'}</span>
+                                <span><i class="fas fa-download"></i> ${formatNumber(app.downloads || 0)} डाउनलोड्स</span>
+                            </div>
+                            <a href="download.html?id=${app.id}" class="btn-download" onclick="trackDownload('${app.id}')">
+                                <i class="fas fa-download"></i> डाउनलोड करें
+                            </a>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            html += '</div>';
+            resultsContainer.innerHTML = html;
+        }
+        
+        window.searchTag = searchTag;
+        
+        // Track search in localStorage
+        function trackSearch(query) {
+            const searches = JSON.parse(localStorage.getItem('recent_searches') || '[]');
+            searches.unshift({
+                query: query,
+                time: new Date().toISOString()
+            });
+            
+            // Keep only last 10 searches
+            if (searches.length > 10) searches.pop();
+            
+            localStorage.setItem('recent_searches', JSON.stringify(searches));
+        }
+    </script>
+</body>
+</html>
