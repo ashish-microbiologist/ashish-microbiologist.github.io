@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - OP ASHISH YT</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        .login-page {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .login-box {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 400px;
+        }
+        
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .login-header img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+            border: 3px solid #2563eb;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus {
+            border-color: #2563eb;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+        
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+        }
+        
+        .login-btn:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
+        
+        .alert {
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .alert-error {
+            background: #fee2e2;
+            color: #dc2626;
+            border: 1px solid #fecaca;
+        }
+        
+        .alert-success {
+            background: #d1fae5;
+            color: #065f46;
+            border: 1px solid #a7f3d0;
+        }
+        
+        .login-links {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .login-links a {
+            color: #2563eb;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-weight: 500;
+        }
+        
+        .login-links a:hover {
+            text-decoration: underline;
+        }
+        
+        .credential-note {
+            background: #f0f9ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border-left: 4px solid #2563eb;
+        }
+        
+        .credential-note h4 {
+            color: #2563eb;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .login-footer {
+            text-align: center;
+            margin-top: 30px;
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9rem;
+        }
+        
+        .login-footer a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        .login-footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-page">
+        <div class="login-box">
+            <div class="login-header">
+                <img src="../assets/img/logo.png" alt="OP ASHISH YT" onerror="this.src='../assets/img/default-logo.png'">
+                <h2><i class="fas fa-user-shield"></i> एडमिन लॉगिन</h2>
+                <p>OP ASHISH YT कंट्रोल पैनल</p>
+            </div>
+            
+            <div id="loginMessage" class="alert" style="display: none;"></div>
+            
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username"><i class="fas fa-user"></i> यूजरनेम</label>
+                    <input type="text" 
+                           id="username" 
+                           name="username" 
+                           placeholder="यूजरनेम दर्ज करें" 
+                           required
+                           autocomplete="username">
+                </div>
+                
+                <div class="form-group">
+                    <label for="password"><i class="fas fa-lock"></i> पासवर्ड</label>
+                    <input type="password" 
+                           id="password" 
+                           name="password" 
+                           placeholder="पासवर्ड दर्ज करें" 
+                           required
+                           autocomplete="current-password">
+                </div>
+                
+                <button type="submit" class="login-btn" id="loginButton">
+                    <i class="fas fa-sign-in-alt"></i> लॉगिन करें
+                </button>
+            </form>
+            
+            <div class="credential-note">
+                <h4><i class="fas fa-info-circle"></i> लॉगिन नोट:</h4>
+                <p><strong>डिफ़ॉल्ट क्रेडेंशियल्स:</strong></p>
+                <p>यूजरनेम: <code>admin</code></p>
+                <p>पासवर्ड: <code>admin123</code></p>
+                <p style="margin-top: 10px; font-size: 0.9rem; color: #666;">
+                    <i class="fas fa-exclamation-triangle"></i> प्रोडक्शन में पासवर्ड जरूर बदलें
+                </p>
+            </div>
+            
+            <div class="login-links">
+                <a href="../index.html">
+                    <i class="fas fa-home"></i> वेबसाइट पर वापस जाएं
+                </a>
+            </div>
+        </div>
+        
+        <div class="login-footer">
+            <p>© 2024 OP ASHISH YT. All rights reserved.</p>
+            <p>Need help? <a href="mailto:help@opashishyt.com">Contact Support</a></p>
+        </div>
+    </div>
+
+    <script>
+        // Check if already logged in
+        if(localStorage.getItem('admin_logged_in') === 'true') {
+            window.location.href = 'dashboard.html';
+        }
+        
+        // लॉगिन फॉर्म सबमिशन
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const messageDiv = document.getElementById('loginMessage');
+            const loginBtn = document.getElementById('loginButton');
+            
+            // Disable button during login
+            loginBtn.disabled = true;
+            loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> लॉगिन हो रहा है...';
+            
+            // Clear previous messages
+            messageDiv.style.display = 'none';
+            
+            // फॉर्म वैलिडेशन
+            if(username === '') {
+                showMessage('कृपया यूजरनेम दर्ज करें', 'error');
+                loginBtn.disabled = false;
+                loginBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> लॉगिन करें';
+                return;
+            }
+            
+            if(password === '') {
+                showMessage('कृपया पासवर्ड दर्ज करें', 'error');
+                loginBtn.disabled = false;
+                loginBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> लॉगिन करें';
+                return;
+            }
+            
+            // Check credentials (you can replace this with Firebase Auth later)
+            const isValid = await validateCredentials(username, password);
+            
+            if (isValid) {
+                showMessage('लॉगिन सफल! रीडायरेक्ट हो रहे हैं...', 'success');
+                
+                // Save login state
+                localStorage.setItem('admin_logged_in', 'true');
+                localStorage.setItem('admin_username', username);
+                localStorage.setItem('login_time', new Date().getTime());
+                
+                // Save login activity
+                let activities = JSON.parse(localStorage.getItem('admin_activities') || '[]');
+                activities.unshift({
+                    icon: 'fa-user-check',
+                    title: `${username} ने लॉगिन किया`,
+                    time: new Date().toLocaleString('hi-IN')
+                });
+                if (activities.length > 5) activities.pop();
+                localStorage.setItem('admin_activities', JSON.stringify(activities));
+                
+                // Redirect after delay
+                setTimeout(() => {
+                    window.location.href = 'dashboard.html';
+                }, 1500);
+                
+            } else {
+                showMessage('गलत यूजरनेम या पासवर्ड!', 'error');
+                loginBtn.disabled = false;
+                loginBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> लॉगिन करें';
+                
+                // Add shake animation to form
+                document.getElementById('loginForm').classList.add('shake');
+                setTimeout(() => {
+                    document.getElementById('loginForm').classList.remove('shake');
+                }, 500);
+            }
+        });
+        
+        // Validate credentials (can be extended with Firebase Auth)
+        async function validateCredentials(username, password) {
+            // For now, use hardcoded credentials
+            // In production, use Firebase Authentication
+            const validCredentials = [
+                { username: 'admin', password: 'admin123' },
+                { username: 'opashish', password: 'opashish123' }
+            ];
+            
+            return validCredentials.some(cred => 
+                cred.username === username && cred.password === password
+            );
+        }
+        
+        // मैसेज दिखाने का फंक्शन
+        function showMessage(message, type) {
+            const messageDiv = document.getElementById('loginMessage');
+            messageDiv.textContent = message;
+            messageDiv.className = 'alert';
+            messageDiv.classList.add(type === 'error' ? 'alert-error' : 'alert-success');
+            messageDiv.style.display = 'flex';
+            
+            // Auto hide after 5 seconds for errors, 3 for success
+            setTimeout(() => {
+                if (messageDiv.style.display !== 'none') {
+                    messageDiv.style.display = 'none';
+                }
+            }, type === 'error' ? 5000 : 3000);
+        }
+        
+        // Add shake animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+                20%, 40%, 60%, 80% { transform: translateX(5px); }
+            }
+            .shake {
+                animation: shake 0.5s ease-in-out;
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Focus on username field on load
+        window.addEventListener('load', function() {
+            document.getElementById('username').focus();
+        });
+        
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            // Ctrl+Enter to submit
+            if (e.ctrlKey && e.key === 'Enter') {
+                document.getElementById('loginForm').submit();
+            }
+            
+            // Escape to clear form
+            if (e.key === 'Escape') {
+                document.getElementById('loginForm').reset();
+                document.getElementById('username').focus();
+            }
+        });
+    </script>
+</body>
+</html>
