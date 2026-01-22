@@ -1,0 +1,63 @@
+# Prevent directory listing
+Options -Indexes
+
+# Prevent execution of PHP files
+<Files *.php>
+    Order Deny,Allow
+    Deny from all
+</Files>
+
+# Prevent execution of other scripts
+<FilesMatch "\.(php|php5|phtml|pl|py|jsp|asp|sh|cgi)$">
+    Order Deny,Allow
+    Deny from all
+</FilesMatch>
+
+# Allow only specific file types
+<FilesMatch "\.(jpg|jpeg|png|gif|pdf|doc|docx|xls|xlsx|txt)$">
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>
+
+# Block executables and archives
+<FilesMatch "\.(exe|sh|bat|cmd|zip|rar|tar|gz)$">
+    Order Deny,Allow
+    Deny from all
+</FilesMatch>
+
+# Security headers
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "DENY"
+    Header set X-XSS-Protection "1; mode=block"
+</IfModule>
+
+# File size limits (adjust as needed)
+php_value upload_max_filesize 10M
+php_value post_max_size 10M
+php_value max_execution_time 300
+
+# Error documents
+ErrorDocument 403 "Access Forbidden"
+ErrorDocument 404 "File Not Found"
+
+# CORS settings
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+    Header set Access-Control-Allow-Methods "GET, POST"
+    Header set Access-Control-Allow-Headers "Content-Type"
+</IfModule>
+
+# Compression
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
+</IfModule>
+
+# Cache control
+<FilesMatch "\.(jpg|jpeg|png|gif|pdf)$">
+    Header set Cache-Control "max-age=31536000, public"
+</FilesMatch>
+
+<FilesMatch "\.(html|htm|css|js)$">
+    Header set Cache-Control "max-age=86400, public"
+</FilesMatch>
