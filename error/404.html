@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found | Microbiology Research Lab</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .error-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--primary-light) 0%, #E3F2FD 100%);
+        }
+        
+        .error-code {
+            font-size: 8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            line-height: 1;
+        }
+        
+        .error-icon {
+            font-size: 4rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+        
+        .error-title {
+            font-size: 2.5rem;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        
+        .error-description {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 500px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+        
+        .error-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .science-metaphor {
+            max-width: 600px;
+            margin: 3rem auto 0;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .science-metaphor h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 6rem;
+            }
+            
+            .error-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <div class="error-icon">
+            <i class="fas fa-microscope"></i>
+        </div>
+        
+        <div class="error-code">404</div>
+        
+        <h1 class="error-title">Specimen Not Found</h1>
+        
+        <p class="error-description">
+            The research page you're looking for appears to be missing from our laboratory database. 
+            It might have been archived, relocated, or is currently under analysis.
+        </p>
+        
+        <div class="error-actions">
+            <a href="../index.html" class="btn primary-btn">
+                <i class="fas fa-home"></i> Return to Lab Home
+            </a>
+            <a href="../index.html#research" class="btn secondary-btn">
+                <i class="fas fa-flask"></i> Browse Research Projects
+            </a>
+            <a href="../index.html#contact" class="btn secondary-btn">
+                <i class="fas fa-envelope"></i> Contact Lab Staff
+            </a>
+        </div>
+        
+        <div class="science-metaphor">
+            <h3><i class="fas fa-lightbulb"></i> Scientific Insight</h3>
+            <p>
+                In microbiology, what appears to be "missing" often leads to new discoveries. 
+                Like a scientist searching for an elusive microorganism, your journey through 
+                unexpected paths might reveal something remarkable. Return to our main laboratory 
+                and continue your exploration of microbial sciences.
+            </p>
+        </div>
+    </div>
+</body>
+</html>

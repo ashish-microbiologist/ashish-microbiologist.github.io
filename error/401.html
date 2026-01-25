@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>401 - Unauthorized | Microbiology Research Lab</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .error-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #fff3e0 0%, #ffecb3 100%);
+        }
+        
+        .error-code {
+            font-size: 8rem;
+            font-weight: 700;
+            color: #ff9800;
+            margin-bottom: 1rem;
+            line-height: 1;
+        }
+        
+        .error-icon {
+            font-size: 4rem;
+            color: #ff9800;
+            margin-bottom: 2rem;
+        }
+        
+        .error-title {
+            font-size: 2.5rem;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        
+        .error-description {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 500px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+        
+        .error-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .security-notice {
+            max-width: 600px;
+            margin: 3rem auto 0;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            border-left: 4px solid #ff9800;
+        }
+        
+        .security-notice h3 {
+            color: #ff9800;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 6rem;
+            }
+            
+            .error-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <div class="error-icon">
+            <i class="fas fa-shield-alt"></i>
+        </div>
+        
+        <div class="error-code">401</div>
+        
+        <h1 class="error-title">Restricted Laboratory Access</h1>
+        
+        <p class="error-description">
+            Access to this laboratory section requires proper authorization. 
+            Please provide valid credentials to continue to the secured research area.
+        </p>
+        
+        <div class="error-actions">
+            <a href="../admin/index.html" class="btn primary-btn">
+                <i class="fas fa-sign-in-alt"></i> Admin Login
+            </a>
+            <a href="../index.html" class="btn secondary-btn">
+                <i class="fas fa-home"></i> Public Lab Website
+            </a>
+            <a href="../index.html#contact" class="btn secondary-btn">
+                <i class="fas fa-envelope"></i> Request Access
+            </a>
+        </div>
+        
+        <div class="security-notice">
+            <h3><i class="fas fa-lock"></i> Security Notice</h3>
+            <p>
+                This section contains sensitive research data and is protected by laboratory security protocols. 
+                Unauthorized access attempts are logged. If you believe you should have access to this area, 
+                please contact the laboratory administrator or use the provided login form with your credentials.
+            </p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>500 - Server Error | Microbiology Research Lab</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .error-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #ffebee 0%, #fce4ec 100%);
+        }
+        
+        .error-code {
+            font-size: 8rem;
+            font-weight: 700;
+            color: var(--danger-color);
+            margin-bottom: 1rem;
+            line-height: 1;
+        }
+        
+        .error-icon {
+            font-size: 4rem;
+            color: var(--danger-color);
+            margin-bottom: 2rem;
+        }
+        
+        .error-title {
+            font-size: 2.5rem;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        
+        .error-description {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 500px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+        
+        .error-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .troubleshooting {
+            max-width: 600px;
+            margin: 3rem auto 0;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            border-left: 4px solid var(--warning-color);
+            text-align: left;
+        }
+        
+        .troubleshooting h3 {
+            color: var(--warning-color);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .troubleshooting ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .troubleshooting li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+        
+        .troubleshooting li i {
+            color: var(--warning-color);
+            margin-top: 0.25rem;
+        }
+        
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 6rem;
+            }
+            
+            .error-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <div class="error-icon">
+            <i class="fas fa-vial"></i>
+        </div>
+        
+        <div class="error-code">500</div>
+        
+        <h1 class="error-title">Laboratory System Error</h1>
+        
+        <p class="error-description">
+            Our research laboratory systems are experiencing technical difficulties. 
+            The lab technicians have been notified and are working to restore normal operations.
+        </p>
+        
+        <div class="error-actions">
+            <a href="../index.html" class="btn primary-btn">
+                <i class="fas fa-home"></i> Return to Lab Home
+            </a>
+            <button onclick="window.location.reload()" class="btn secondary-btn">
+                <i class="fas fa-redo"></i> Retry Request
+            </button>
+            <a href="../index.html#contact" class="btn secondary-btn">
+                <i class="fas fa-headset"></i> Technical Support
+            </a>
+        </div>
+        
+        <div class="troubleshooting">
+            <h3><i class="fas fa-tools"></i> Laboratory Troubleshooting</h3>
+            <p>While our team resolves this issue, you can try:</p>
+            <ul>
+                <li>
+                    <i class="fas fa-check-circle"></i>
+                    <span>Refresh your browser (Ctrl + F5 or Cmd + R)</span>
+                </li>
+                <li>
+                    <i class="fas fa-check-circle"></i>
+                    <span>Clear your browser cache and cookies</span>
+                </li>
+                <li>
+                    <i class="fas fa-check-circle"></i>
+                    <span>Try accessing from a different browser</span>
+                </li>
+                <li>
+                    <i class="fas fa-check-circle"></i>
+                    <span>Check your internet connection</span>
+                </li>
+                <li>
+                    <i class="fas fa-check-circle"></i>
+                    <span>Return in a few minutes while we fix the system</span>
+                </li>
+            </ul>
+        </div>
+        
+        <div style="margin-top: 2rem; color: var(--text-light); font-size: 0.9rem;">
+            <p><i class="fas fa-clock"></i> Error logged: <span id="errorTime"></span></p>
+            <p><i class="fas fa-id-badge"></i> Reference ID: <code>LAB-ERR-500-<span id="errorId"></span></code></p>
+        </div>
+    </div>
+    
+    <script>
+        // Generate error timestamp and ID
+        document.getElementById('errorTime').textContent = new Date().toLocaleString();
+        document.getElementById('errorId').textContent = Math.random().toString(36).substr(2, 9).toUpperCase();
+    </script>
+</body>
+</html>
