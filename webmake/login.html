@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - WEBSITE MAKER | OP ASHISH YT</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="auth-page">
+    <div class="back-nav">
+        <a href="index.html"><i class="fas fa-arrow-left"></i> Home</a>
+    </div>
+
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-brand">
+                <i class="fas fa-rocket"></i>
+                <h2>WEBSITE MAKER</h2>
+                <p>OP ASHISH YT</p>
+            </div>
+            
+            <h1>🔐 Login करें</h1>
+            <p>अपने account में login करके order track करें</p>
+            
+            <form id="loginForm" class="auth-form">
+                <div class="input-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="loginEmail" placeholder="Email Address" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="loginPassword" placeholder="Password" required>
+                </div>
+                
+                <button type="submit" class="btn-primary btn-full">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+            </form>
+
+            <div class="auth-footer">
+                <p>नया account बनाएं? <a href="signup.html">Sign Up करें</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            const users = JSON.parse(localStorage.getItem('websiteMakerUsers')) || [];
+            const user = users.find(u => u.email === email && u.password === password);
+            
+            if (user) {
+                localStorage.setItem('currentUserId', user.id);
+                window.location.href = 'dashboard.html';
+            } else {
+                alert('❌ Invalid Email या Password!');
+            }
+        });
+    </script>
+</body>
+</html>

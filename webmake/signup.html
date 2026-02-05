@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - WEBSITE MAKER | OP ASHISH YT</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="auth-page">
+    <!-- Back Navigation -->
+    <div class="back-nav">
+        <a href="index.html"><i class="fas fa-arrow-left"></i> Home</a>
+    </div>
+
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-brand">
+                <i class="fas fa-rocket"></i>
+                <h2>WEBSITE MAKER</h2>
+                <p>OP ASHISH YT</p>
+            </div>
+            
+            <h1>📝 Sign Up करें</h1>
+            <p>2 मिनट में account बनाएं और अपनी website बनवाना शुरू करें</p>
+            
+            <form id="signupForm" class="auth-form">
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="signupName" placeholder="Full Name" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="signupEmail" placeholder="Email Address" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-phone"></i>
+                    <input type="tel" id="signupPhone" placeholder="Phone Number" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="signupPassword" placeholder="Password" required>
+                </div>
+                
+                <button type="submit" class="btn-primary btn-full">
+                    <i class="fas fa-user-plus"></i> Sign Up Free
+                </button>
+            </form>
+
+            <div class="auth-footer">
+                <p>पहले से account है? <a href="login.html">Login करें</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = {
+                name: document.getElementById('signupName').value,
+                email: document.getElementById('signupEmail').value,
+                phone: document.getElementById('signupPhone').value,
+                password: document.getElementById('signupPassword').value
+            };
+
+            // Simple validation
+            if (formData.name && formData.email && formData.phone && formData.password) {
+                // Store in localStorage
+                let users = JSON.parse(localStorage.getItem('websiteMakerUsers')) || [];
+                
+                if (users.find(user => user.email === formData.email)) {
+                    alert('❌ यह Email पहले से registered है!');
+                    return;
+                }
+
+                const newUser = {
+                    id: Date.now(),
+                    ...formData,
+                    status: 'registered',
+                    orderId: null,
+                    createdAt: new Date().toISOString()
+                };
+
+                users.push(newUser);
+                localStorage.setItem('websiteMakerUsers', JSON.stringify(users));
+                
+                alert('✅ Successfully Registered!');
+                window.location.href = 'login.html';
+            }
+        });
+    </script>
+</body>
+</html>
