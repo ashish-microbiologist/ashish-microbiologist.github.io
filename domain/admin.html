@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Website Maker</title>
+    <link rel="stylesheet" href="style-mobile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="app-bar" style="background: linear-gradient(135deg, #FF6B6B, #FF8E8E);">
+        <div class="logo">
+            <i class="fas fa-user-shield"></i>
+            <span>ADMIN PANEL</span>
+        </div>
+        <div class="app-actions">
+            <button onclick="logout()" class="btn-icon" style="color: white;">
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
+        </div>
+    </header>
+
+    <div class="admin-container">
+        <!-- Stats -->
+        <div class="dashboard-stats">
+            <div class="stat-card">
+                <i class="fas fa-users stat-icon" style="color: #667eea;"></i>
+                <h3 id="totalUsers">0</h3>
+                <p>Total Users</p>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-shopping-cart stat-icon" style="color: #00C851;"></i>
+                <h3 id="totalOrders">0</h3>
+                <p>Total Orders</p>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-rupee-sign stat-icon" style="color: #FFD700;"></i>
+                <h3 id="totalRevenue">₹0</h3>
+                <p>Total Revenue</p>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="admin-actions">
+            <h3>Quick Actions</h3>
+            <div class="action-grid">
+                <button onclick="editUPI()" class="action-btn">
+                    <i class="fas fa-qrcode"></i>
+                    <span>Edit UPI</span>
+                </button>
+                <button onclick="viewOrders()" class="action-btn">
+                    <i class="fas fa-list"></i>
+                    <span>View Orders</span>
+                </button>
+                <button onclick="sendBulkSMS()" class="action-btn">
+                    <i class="fas fa-sms"></i>
+                    <span>Bulk SMS</span>
+                </button>
+                <button onclick="exportData()" class="action-btn">
+                    <i class="fas fa-download"></i>
+                    <span>Export Data</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- UPI Settings -->
+        <div class="admin-section" id="upiSection" style="display: none;">
+            <h3><i class="fas fa-cog"></i> UPI Payment Settings</h3>
+            
+            <form id="upiForm">
+                <div class="form-group">
+                    <label>UPI ID <span class="required">*</span></label>
+                    <input type="text" id="upiId" placeholder="yourupi@paytm">
+                    <div class="error-msg" id="upiIdError"></div>
+                    <small>Valid format: username@bank</small>
+                </div>
+                
+                <div class="form-group">
+                    <label>UPI Name <span class="required">*</span></label>
+                    <input type="text" id="upiName" placeholder="Website Maker">
+                    <div class="error-msg" id="upiNameError"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label>QR Code URL</label>
+                    <input type="url" id="qrUrl" placeholder="https://your-qr-code.jpg">
+                    <div class="error-msg" id="qrUrlError"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Default Amount <span class="required">*</span></label>
+                    <input type="number" id="defaultAmount" placeholder="999" min="100" max="50000">
+                    <div class="error-msg" id="amountError"></div>
+                </div>
+
+                <div class="error-msg global" id="upiFormError"></div>
+
+                <button type="submit" class="btn-primary" id="upiSaveBtn">
+                    <i class="fas fa-save"></i> Save UPI Settings
+                </button>
+            </form>
+        </div>
+
+        <!-- Orders List -->
+        <div class="admin-section" id="ordersSection" style="display: none;">
+            <h3><i class="fas fa-list"></i> All Orders</h3>
+            <input type="text" id="orderSearch" placeholder="Search orders..." onkeyup="displayOrders(this.value)" style="width:100%; margin-bottom:15px; padding:12px; border:1px solid #ddd; border-radius:10px;">
+            <div class="orders-grid" id="ordersList">
+                <!-- Orders load here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="admin-script.js"></script>
+</body>
+</html>

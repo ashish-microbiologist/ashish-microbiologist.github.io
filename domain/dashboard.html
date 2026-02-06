@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style-mobile.css">
+</head>
+<body>
+    <header class="app-bar">
+        <div class="logo">
+            <i class="fas fa-tachometer-alt"></i>
+            <span>Dashboard</span>
+        </div>
+        <div class="app-actions">
+            <button onclick="location.href='details.html'" class="btn-icon">
+                <i class="fas fa-edit"></i>
+            </button>
+            <button onclick="location.href='login.html'" class="btn-icon">
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
+        </div>
+    </header>
+
+    <div class="dashboard-stats">
+        <div class="stat-card">
+            <i class="fas fa-mobile-alt"></i>
+            <h3>Website Ready</h3>
+            <p>100% Complete</p>
+        </div>
+    </div>
+
+    <div class="dashboard-actions">
+        <button onclick="location.href='details.html'" class="action-btn large">
+            <i class="fas fa-edit"></i>
+            Website Details भरें
+        </button>
+        <button onclick="location.href='payment.html'" class="action-btn large primary">
+            <i class="fas fa-rupee-sign"></i>
+            ₹999 में खरीदें
+        </button>
+    </div>
+
+    <script src="script-mobile.js"></script>
+</body>
+</html>

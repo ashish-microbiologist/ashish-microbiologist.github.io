@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - ₹999</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style-mobile.css">
+</head>
+<body style="background: linear-gradient(135deg, #00C851 0%, #28a745 100%);">
+    <header class="app-bar" style="background: rgba(255,255,255,0.1); color: white;">
+        <div class="logo">
+            <i class="fas fa-credit-card"></i>
+            <span>Payment</span>
+        </div>
+    </header>
+
+    <div class="payment-container">
+        <div class="payment-card">
+            <div class="payment-header">
+                <i class="fas fa-check-circle" style="font-size: 60px; color: #FFD700;"></i>
+                <h2>Final Payment</h2>
+                <div id="totalAmount" class="amount">₹999</div>
+            </div>
+
+            <div class="upi-qr">
+                <div class="qr-placeholder">
+                    <i class="fas fa-qrcode" style="font-size: 80px; opacity: 0.5;"></i>
+                    <p>QR Code यहाँ दिखेगा</p>
+                </div>
+                <div class="upi-details">
+                    <strong>Pay: ₹<span id="payAmount">999</span></strong>
+                    <span id="upiId">ashish8418078@axl</span>
+                </div>
+            </div>
+
+            <div class="payment-actions">
+                <button onclick="completePayment()" class="btn-success full-width">
+                    <i class="fas fa-check"></i> Payment Complete
+                </button>
+                <p class="payment-note">
+                    UPI से payment करें या WhatsApp पर संपर्क करें
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script-mobile.js"></script>
+</body>
+</html>

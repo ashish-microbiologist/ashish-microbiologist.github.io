@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Mobile Website</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style-mobile.css">
+</head>
+<body style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+    <div class="form-container">
+        <div class="form-card">
+            <div class="form-header">
+                <i class="fas fa-user-plus"></i>
+                <h2>Sign Up</h2>
+            </div>
+            <form id="signupForm">
+                <div class="form-group">
+                    <label>नाम</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone</label>
+                    <input type="tel" id="phone" required>
+                </div>
+                <div class="form-group">
+                    <label>Business Name</label>
+                    <input type="text" id="business" required>
+                </div>
+                <button type="submit" class="btn-primary">Next → Dashboard</button>
+            </form>
+        </div>
+    </div>
+    <script src="script-mobile.js"></script>
+</body>
+</html>

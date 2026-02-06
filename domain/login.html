@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Mobile Website</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style-mobile.css">
+</head>
+<body style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+    <div class="form-container">
+        <div class="form-card">
+            <div class="form-header">
+                <i class="fas fa-sign-in-alt"></i>
+                <h2>Login</h2>
+            </div>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label>Phone</label>
+                    <input type="tel" id="loginPhone" required>
+                </div>
+                <button type="submit" class="btn-primary">Login</button>
+                <p class="form-link" onclick="location.href='signup.html'">नया account बनाएं?</p>
+            </form>
+        </div>
+    </div>
+    <script src="script-mobile.js"></script>
+</body>
+</html>
