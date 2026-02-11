@@ -1,0 +1,14 @@
+theme: jekyll-theme-cayman
+markdown: kramdown
+include:
+  - .nojekyll
+  - robots.txt
+  - index.html
+  - 404.html
+  - css
+  - js
+  - data
+exclude:
+  - README.md
+  - deploy.sh
+encoding: UTF-8
