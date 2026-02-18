@@ -1,0 +1,17 @@
+<key>NSPhotoLibraryUsageDescription</key>
+<string>This app needs access to photo library to upload stories</string>
+<key>NSCameraUsageDescription</key>
+<string>This app needs access to camera to take photos for stories</string>
+<key>NSMicrophoneUsageDescription</key>
+<string>This app needs access to microphone for video stories</string>
+
+<key>LSApplicationQueriesSchemes</key>
+<array>
+    <string>whatsapp</string>
+    <string>instagram</string>
+    <string>fb</string>
+    <string>fb-messenger</string>
+    <string>tg</string>
+    <string>twitter</string>
+    <string>mailto</string>
+</array>
