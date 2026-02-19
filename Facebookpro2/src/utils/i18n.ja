@@ -1,0 +1,171 @@
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
+
+// English
+const en = {
+  common: {
+    loading: 'Loading...',
+    error: 'Error',
+    success: 'Success',
+    cancel: 'Cancel',
+    save: 'Save',
+    delete: 'Delete',
+    edit: 'Edit',
+    share: 'Share',
+    download: 'Download',
+    watch: 'Watch'
+  },
+  home: {
+    title: 'Home',
+    features: 'Features',
+    stories: 'Stories',
+    videos: 'Videos',
+    downloads: 'Downloads',
+    profile: 'Profile',
+    connect: 'Connect With Us'
+  },
+  stories: {
+    title: 'Stories',
+    addStory: 'Add Story',
+    noStories: 'No stories available',
+    expires: 'Expires in',
+    views: 'views'
+  },
+  videos: {
+    title: 'Videos',
+    search: 'Search videos...',
+    noVideos: 'No videos found',
+    duration: 'Duration',
+    quality: 'Quality',
+    download: 'Download'
+  },
+  profile: {
+    title: 'Profile',
+    settings: 'Settings',
+    darkMode: 'Dark Mode',
+    language: 'Language',
+    downloads: 'Downloads',
+    savedVideos: 'Saved Videos',
+    about: 'About',
+    logout: 'Logout'
+  }
+};
+
+// Hindi
+const hi = {
+  common: {
+    loading: 'लोड हो रहा है...',
+    error: 'त्रुटि',
+    success: 'सफलता',
+    cancel: 'रद्द करें',
+    save: 'सहेजें',
+    delete: 'हटाएं',
+    edit: 'संपादित करें',
+    share: 'शेयर करें',
+    download: 'डाउनलोड',
+    watch: 'देखें'
+  },
+  home: {
+    title: 'होम',
+    features: 'विशेषताएँ',
+    stories: 'स्टोरीज़',
+    videos: 'वीडियो',
+    downloads: 'डाउनलोड',
+    profile: 'प्रोफाइल',
+    connect: 'हमसे जुड़ें'
+  },
+  stories: {
+    title: 'स्टोरीज़',
+    addStory: 'स्टोरी डालें',
+    noStories: 'कोई स्टोरी नहीं',
+    expires: 'समाप्त होगी',
+    views: 'दृश्य'
+  },
+  videos: {
+    title: 'वीडियो',
+    search: 'वीडियो खोजें...',
+    noVideos: 'कोई वीडियो नहीं',
+    duration: 'अवधि',
+    quality: 'गुणवत्ता',
+    download: 'डाउनलोड'
+  },
+  profile: {
+    title: 'प्रोफाइल',
+    settings: 'सेटिंग्स',
+    darkMode: 'डार्क मोड',
+    language: 'भाषा',
+    downloads: 'डाउनलोड',
+    savedVideos: 'सेव किए गए वीडियो',
+    about: 'बारे में',
+    logout: 'लॉग आउट'
+  }
+};
+
+// Bengali
+const bn = {
+  common: {
+    loading: 'লোড হচ্ছে...',
+    error: 'ত্রুটি',
+    success: 'সফল',
+    cancel: 'বাতিল',
+    save: 'সংরক্ষণ',
+    delete: 'মুছুন',
+    edit: 'সম্পাদনা',
+    share: 'শেয়ার',
+    download: 'ডাউনলোড',
+    watch: 'দেখুন'
+  },
+  home: {
+    title: 'হোম',
+    features: 'বৈশিষ্ট্য',
+    stories: 'গল্প',
+    videos: 'ভিডিও',
+    downloads: 'ডাউনলোড',
+    profile: 'প্রোফাইল',
+    connect: 'যোগাযোগ করুন'
+  },
+  stories: {
+    title: 'গল্প',
+    addStory: 'গল্প যোগ করুন',
+    noStories: 'কোন গল্প নেই',
+    expires: 'মেয়াদ শেষ',
+    views: 'দর্শন'
+  },
+  videos: {
+    title: 'ভিডিও',
+    search: 'ভিডিও খুঁজুন...',
+    noVideos: 'কোন ভিডিও নেই',
+    duration: 'সময়কাল',
+    quality: 'গুণমান',
+    download: 'ডাউনলোড'
+  },
+  profile: {
+    title: 'প্রোফাইল',
+    settings: 'সেটিংস',
+    darkMode: 'ডার্ক মোড',
+    language: 'ভাষা',
+    downloads: 'ডাউনলোড',
+    savedVideos: 'সংরক্ষিত ভিডিও',
+    about: 'সম্পর্কে',
+    logout: 'লগ আউট'
+  }
+};
+
+const resources = {
+  en: { translation: en },
+  hi: { translation: hi },
+  bn: { translation: bn }
+};
+
+i18n
+  .use(initReactI18next)
+  .init({
+    resources,
+    lng: 'en',
+    fallbackLng: 'en',
+    interpolation: {
+      escapeValue: false
+    }
+  });
+
+export default i18n;
