@@ -1,0 +1,44 @@
+name: Build Facebook Pro 2 APK
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Code download karo
+        uses: actions/checkout@v3
+
+      - name: Java install karo
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Node.js install karo
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Dependencies install karo
+        run: npm install
+
+      - name: Android folder setup karo
+        run: |
+          mkdir -p android/app/src/main/assets
+          npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res
+
+      - name: APK build karo
+        run: |
+          cd android
+          chmod +x gradlew
+          ./gradlew assembleRelease
+
+      - name: APK upload karo
+        uses: actions/upload-artifact@v3
+        with:
+          name: FacebookPro2-APK
+          path: android/app/build/outputs/apk/release/app-release.apk
